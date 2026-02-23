@@ -16,16 +16,17 @@
         .pro-item { text-align: center; font-size: 11px; font-weight: bold; color: var(--primary); }
         .pro-item i { display: block; font-size: 22px; margin-bottom: 8px; color: #3b82f6; }
         
-        /* 企業服務按鈕 - 修正後：移除副標題，高度自動對齊 */
         .corp-section { padding: 0 15px 20px; display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
-        .corp-card { 
-            display: flex; flex-direction: column; align-items: center; justify-content: center; 
-            min-height: 100px; padding: 15px 10px; border-radius: 12px; text-decoration: none; 
-            color: white; text-align: center; font-weight: bold; font-size: 16px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); 
-        }
+        .corp-card { display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 100px; padding: 15px 10px; border-radius: 12px; text-decoration: none; color: white; text-align: center; font-weight: bold; font-size: 16px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
         .btn-corp { background: linear-gradient(135deg, #f59e0b, #d97706); }
         .btn-teacher { background: linear-gradient(135deg, #10b981, #059669); }
         .corp-card i { font-size: 28px; margin-bottom: 10px; }
+
+        /* 價格特效 */
+        .price-tag { background: #fff4e5; border: 2px dashed #f59e0b; padding: 15px; border-radius: 12px; text-align: center; margin-top: 10px; }
+        .old-price { text-decoration: line-through; color: #94a3b8; font-size: 16px; margin-right: 10px; }
+        .new-price { color: #ef4444; font-size: 20px; font-weight: bold; animation: blink 1s infinite; }
+        @keyframes blink { 50% { opacity: 0.5; } }
 
         .section-title { background: #f8fafc; padding: 10px 20px; font-weight: bold; color: #64748b; border-top: 1px solid #eee; border-bottom: 1px solid #eee; font-size: 14px; }
         .filter-box { padding: 15px; }
@@ -107,8 +108,14 @@
             <div class="content">
                 <span class="label">📍 ${item["分校"]} 分校地址</span>
                 <div class="box" style="background:#fffbeb; font-weight:bold;">${item["地址"] || "請參考地圖導航"}</div>
+                
+                <div class="price-tag">
+                    <span class="old-price">原價 $2,250</span>
+                    <span class="new-price">✨ 優惠價：歡迎洽詢 ✨</span>
+                </div>
+
                 <span class="label">💎 為什麼選擇聯成電腦教室？</span>
-                <div class="box">• <strong>地標級位置：</strong> 均鄰近交通樞紐。<br>• <strong>標準化教學配置：</strong> 內建廣播系統。<br>• <strong>專業純淨環境：</strong> 符合國家 TTQS 認證。</div>
+                <div class="box">• <strong>地標級位置：</strong> 均鄰近交通樞紐。<br>• <strong>標準化教學配置：</strong> 內建廣播系統。</div>
                 <span class="label">⚠️ 租借注意事項</span>
                 <div class="box notice">
                     • <strong>環境維護：</strong> 請保持環境清潔並輕聲細語。<br>
