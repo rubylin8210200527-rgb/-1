@@ -7,35 +7,54 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root { --primary: #1e3a8a; --accent: #f59e0b; --bg: #f1f5f9; }
-        body { font-family: "Microsoft JhengHei", sans-serif; background: #cbd5e1; margin: 0; padding-bottom: 110px; cursor: none !important; }
-        .container { width: 100%; max-width: 500px; background: white; min-height: 100vh; margin: auto; position: relative; box-shadow: 0 0 20px rgba(0,0,0,0.2); cursor: none !important; }
-        
-        /* 🔴 紅色雷射游標 */
-        #laser-pointer {
-            width: 15px; height: 15px; background: #ff0000;
-            position: fixed; border-radius: 50%;
-            pointer-events: none; z-index: 99999;
-            box-shadow: 0 0 10px #ff0000, 0 0 20px #ff0000, 0 0 30px #ff0000;
-            transform: translate(-50%, -50%);
-            display: block;
-        }
-
+        body { font-family: "Microsoft JhengHei", sans-serif; background: #cbd5e1; margin: 0; padding-bottom: 110px; }
+        .container { width: 100%; max-width: 500px; background: white; min-height: 100vh; margin: auto; position: relative; box-shadow: 0 0 20px rgba(0,0,0,0.2); }
         .header { background: linear-gradient(135deg, #1e3a8a 0%, #2563eb 100%); color: white; padding: 25px 20px; text-align: center; }
         .header h1 { margin: 0; font-size: 22px; }
         .ttqs-badge { background: var(--accent); color: #000; display: inline-block; padding: 4px 15px; border-radius: 50px; font-size: 13px; font-weight: bold; margin-top: 10px; border: 2px solid white; }
+        .pros-grid { display: grid; grid-template-columns: repeat(4, 1fr); padding: 20px 10px; background: #fff; gap: 5px; }
+        .pro-item { text-align: center; font-size: 11px; font-weight: bold; color: var(--primary); }
+        .pro-item i { display: block; font-size: 22px; margin-bottom: 8px; color: #3b82f6; }
         
-        /* 企業服務按鈕 */
         .corp-section { padding: 0 15px 20px; display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
         .corp-card { display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 100px; padding: 15px 10px; border-radius: 12px; text-decoration: none; color: white; text-align: center; font-weight: bold; font-size: 16px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
         .btn-corp { background: linear-gradient(135deg, #f59e0b, #d97706); }
         .btn-teacher { background: linear-gradient(135deg, #10b981, #059669); }
         .corp-card i { font-size: 28px; margin-bottom: 10px; }
 
-        /* 價格閃爍特效 */
-        .price-tag { background: #fff4e5; border: 2px dashed #f59e0b; padding: 15px; border-radius: 12px; text-align: center; margin-top: 10px; }
+        /* 🔴 活蹦亂跳的小紅球特效 */
+        .price-container { position: relative; display: inline-block; width: 100%; }
+        .promo-ball {
+            position: absolute;
+            top: -10px;
+            right: 10px;
+            width: 50px;
+            height: 50px;
+            background: radial-gradient(circle at 30% 30%, #ff4d4d, #b30000);
+            border-radius: 50%;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            font-weight: bold;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+            animation: jump 0.8s infinite alternate ease-in-out, glow 1.5s infinite;
+            z-index: 10;
+        }
+        @keyframes jump {
+            from { transform: translateY(0); }
+            to { transform: translateY(-15px); }
+        }
+        @keyframes glow {
+            0% { box-shadow: 0 0 5px #ff0000; }
+            50% { box-shadow: 0 0 20px #ff0000; }
+            100% { box-shadow: 0 0 5px #ff0000; }
+        }
+
+        .price-tag { background: #fff4e5; border: 2px dashed #f59e0b; padding: 20px 15px; border-radius: 12px; text-align: center; margin-top: 15px; position: relative; }
         .old-price { text-decoration: line-through; color: #94a3b8; font-size: 16px; margin-right: 10px; }
-        .new-price { color: #ef4444; font-size: 20px; font-weight: bold; animation: blink 1s infinite; }
-        @keyframes blink { 50% { opacity: 0.2; } }
+        .new-price { color: #ef4444; font-size: 20px; font-weight: bold; }
 
         .section-title { background: #f8fafc; padding: 10px 20px; font-weight: bold; color: #64748b; border-top: 1px solid #eee; border-bottom: 1px solid #eee; font-size: 14px; }
         .filter-box { padding: 15px; }
@@ -50,7 +69,6 @@
         .label { font-weight: bold; color: var(--primary); border-left: 5px solid var(--primary); padding-left: 10px; margin: 20px 0 10px; display: block; }
         .box { background: #f8fafc; padding: 15px; border-radius: 12px; font-size: 14px; line-height: 1.7; border: 1px solid #e2e8f0; }
         .notice { border: 2px solid #ef4444; color: #ef4444; background: #fef2f2; }
-        
         .quick-action-bar { position: fixed; bottom: 0; left: 50%; transform: translateX(-50%); width: 100%; max-width: 500px; background: white; display: flex; justify-content: space-around; align-items: flex-end; padding: 10px 0 25px 0; box-shadow: 0 -5px 15px rgba(0,0,0,0.1); z-index: 1000; }
         .action-item { text-decoration: none; display: flex; flex-direction: column; align-items: center; gap: 5px; flex: 1; color: #475569; }
         .action-icon { width: 45px; height: 45px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 20px; color: white; }
@@ -60,8 +78,6 @@
     </style>
 </head>
 <body>
-    <div id="laser-pointer"></div>
-
 <div class="container">
     <div class="header">
         <h1>聯成電腦 | 專業培訓空間</h1>
@@ -102,19 +118,7 @@
         </a>
     </div>
 </div>
-
 <script>
-    // 🔴 雷射追蹤邏輯
-    const pointer = document.getElementById('laser-pointer');
-    document.addEventListener('mousemove', (e) => {
-        pointer.style.left = e.clientX + 'px';
-        pointer.style.top = e.clientY + 'px';
-    });
-    document.addEventListener('touchstart', (e) => {
-        pointer.style.left = e.touches[0].clientX + 'px';
-        pointer.style.top = e.touches[0].clientY + 'px';
-    });
-
     const API_URL = "https://script.google.com/macros/s/AKfycbzcIqXFJa5YuOC7bGjVWqp1MoXK8_7E3mJcmmAcoO2b8od4RWZVQXPTBjU3X20Q9Qc9/exec";
     const BRAND = "聯成電腦";
     let dataList = []; let timer = null;
@@ -133,9 +137,12 @@
                 <span class="label">📍 ${item["分校"]} 分校地址</span>
                 <div class="box" style="background:#fffbeb; font-weight:bold;">${item["地址"] || "請參考地圖導航"}</div>
                 
-                <div class="price-tag">
-                    <span class="old-price">原價 $2,250</span>
-                    <span class="new-price">✨ 優惠價：歡迎洽詢 ✨</span>
+                <div class="price-container">
+                    <div class="promo-ball">優惠</div>
+                    <div class="price-tag">
+                        <span class="old-price">原價 $2,250</span>
+                        <span class="new-price">✨ 優惠價：歡迎洽詢 ✨</span>
+                    </div>
                 </div>
 
                 <span class="label">💎 為什麼選擇聯成電腦教室？</span>
