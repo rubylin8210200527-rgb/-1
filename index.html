@@ -9,24 +9,34 @@
         :root { --primary: #1e3a8a; --accent: #f59e0b; --bg: #f1f5f9; }
         body { font-family: "Microsoft JhengHei", sans-serif; background: #cbd5e1; margin: 0; padding-bottom: 110px; }
         .container { width: 100%; max-width: 500px; background: white; min-height: 100vh; margin: auto; position: relative; box-shadow: 0 0 20px rgba(0,0,0,0.2); }
+        
         .header { background: linear-gradient(135deg, #1e3a8a 0%, #2563eb 100%); color: white; padding: 25px 20px; text-align: center; }
         .header h1 { margin: 0; font-size: 22px; }
         .ttqs-badge { background: var(--accent); color: #000; display: inline-block; padding: 4px 15px; border-radius: 50px; font-size: 13px; font-weight: bold; margin-top: 10px; border: 2px solid white; }
+
+        /* 四大優勢 */
         .pros-grid { display: grid; grid-template-columns: repeat(4, 1fr); padding: 20px 10px; background: #fff; gap: 5px; }
         .pro-item { text-align: center; font-size: 11px; font-weight: bold; color: var(--primary); }
         .pro-item i { display: block; font-size: 22px; margin-bottom: 8px; color: #3b82f6; }
+        
+        /* 企業服務按鈕 - 絕對對稱精簡版 */
         .corp-section { padding: 0 15px 20px; display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
-        .corp-card { display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 15px 10px; border-radius: 12px; text-decoration: none; color: white; text-align: center; font-weight: bold; font-size: 15px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+        .corp-card { 
+            display: flex; flex-direction: column; align-items: center; justify-content: center; 
+            padding: 22px 10px; border-radius: 12px; text-decoration: none; color: white; 
+            text-align: center; font-weight: bold; font-size: 16px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); 
+        }
         .btn-corp { background: linear-gradient(135deg, #f59e0b, #d97706); }
         .btn-teacher { background: linear-gradient(135deg, #10b981, #059669); }
-        .corp-card i { font-size: 24px; margin-bottom: 8px; }
-        .corp-card span { font-size: 11px; font-weight: normal; opacity: 0.9; margin-top: 3px; }
+        .corp-card i { font-size: 28px; margin-bottom: 10px; }
+
         .section-title { background: #f8fafc; padding: 10px 20px; font-weight: bold; color: #64748b; border-top: 1px solid #eee; border-bottom: 1px solid #eee; font-size: 14px; }
         .filter-box { padding: 15px; }
         select { width: 100%; padding: 12px; border-radius: 10px; border: 2px solid #ddd; font-size: 16px; outline: none; }
         .tabs { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; padding: 0 15px 15px; }
         .tab-btn { padding: 12px 5px; background: white; border-radius: 10px; border: 1px solid #e2e8f0; font-weight: bold; cursor: pointer; text-align: center; color: #64748b; transition: 0.3s; }
         .tab-btn.active { background: var(--primary); color: white; border-color: var(--primary); box-shadow: 0 4px 8px rgba(30,58,138,0.2); }
+
         .carousel { width: 100%; height: 260px; overflow: hidden; position: relative; background: #000; }
         .track { display: flex; transition: 0.5s; height: 100%; }
         .track img { width: 100%; height: 100%; object-fit: cover; flex-shrink: 0; }
@@ -34,6 +44,7 @@
         .label { font-weight: bold; color: var(--primary); border-left: 5px solid var(--primary); padding-left: 10px; margin: 20px 0 10px; display: block; }
         .box { background: #f8fafc; padding: 15px; border-radius: 12px; font-size: 14px; line-height: 1.7; border: 1px solid #e2e8f0; }
         .notice { border: 2px solid #ef4444; color: #ef4444; background: #fef2f2; }
+
         .quick-action-bar { position: fixed; bottom: 0; left: 50%; transform: translateX(-50%); width: 100%; max-width: 500px; background: white; display: flex; justify-content: space-around; align-items: flex-end; padding: 10px 0 25px 0; box-shadow: 0 -5px 15px rgba(0,0,0,0.1); z-index: 1000; }
         .action-item { text-decoration: none; display: flex; flex-direction: column; align-items: center; gap: 5px; flex: 1; color: #475569; }
         .action-icon { width: 45px; height: 45px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 20px; color: white; }
@@ -45,7 +56,7 @@
 <body>
 <div class="container">
     <div class="header">
-        <h1>聯成電腦 | 專業培訓空間</h1>
+        <h1>聯成電腦 | 企業專屬服務</h1>
         <div class="ttqs-badge">🏆 通過國家級 TTQS 品質認證</div>
     </div>
     <div class="pros-grid">
@@ -54,20 +65,23 @@
         <div class="pro-item"><i class="fas fa-check-double"></i>標準配置</div>
         <div class="pro-item"><i class="fas fa-broom"></i>純淨環境</div>
     </div>
+    
     <div class="corp-section">
         <a href="https://lin.ee/X24MfFM?text=您好，我想詢問【客製化企業包班】" target="_blank" class="corp-card btn-corp">
-            <i class="fas fa-users-cog"></i>客製化企業包班<span>專屬培訓規劃</span>
+            <i class="fas fa-users-cog"></i>客製化企業包班
         </a>
         <a href="tel:0979647073" class="corp-card btn-teacher">
-            <i class="fas fa-user-tie"></i>專業講師外派<span>專業直接到府</span>
+            <i class="fas fa-user-tie"></i>專業講師外派
         </a>
     </div>
+
     <div class="section-title"><i class="fas fa-door-open" style="margin-right:8px;"></i>場地空間租借系統</div>
     <div id="rent-system">
         <div class="filter-box"><select id="region-sel" onchange="changeRegion()"></select></div>
         <div id="tab-list" class="tabs"></div>
         <div id="display"><div style="text-align:center; padding:50px;">讀取中...</div></div>
     </div>
+
     <div class="quick-action-bar">
         <a href="https://lin.ee/X24MfFM" target="_blank" class="action-item">
             <div class="action-icon bg-blue"><i class="fas fa-comment-dots"></i></div>
@@ -84,7 +98,6 @@
     </div>
 </div>
 <script>
-    const LINE_URL = "https://lin.ee/X24MfFM"; 
     const API_URL = "https://script.google.com/macros/s/AKfycbzcIqXFJa5YuOC7bGjVWqp1MoXK8_7E3mJcmmAcoO2b8od4RWZVQXPTBjU3X20Q9Qc9/exec";
     const BRAND = "聯成電腦";
     let dataList = []; let timer = null;
@@ -103,12 +116,12 @@
                 <span class="label">📍 ${item["分校"]} 分校地址</span>
                 <div class="box" style="background:#fffbeb; font-weight:bold;">${item["地址"] || "請參考地圖導航"}</div>
                 <span class="label">💎 為什麼選擇聯成電腦教室？</span>
-                <div class="box">• <strong>地標級位置：</strong> 均鄰近交通樞紐，好找不迷路。<br>• <strong>標準化教學配置：</strong> 內建廣播系統，一鍵同步螢幕。<br>• <strong>專業純淨環境：</strong> 符合國家 TTQS 認證空間。</div>
+                <div class="box">• <strong>地標級位置：</strong> 均鄰近交通樞紐。<br>• <strong>標準化教學配置：</strong> 內建廣播系統。<br>• <strong>專業純淨環境：</strong> 符合國家 TTQS 認證空間。</div>
                 <span class="label">⚠️ 租借注意事項</span>
                 <div class="box notice">
-                    • <strong>環境維護：</strong> 請保持環境清潔並輕聲細語，愛惜硬體設備。<br>
-                    • <strong>設備損壞：</strong> 若因人為操作不當造成損毀，須照價賠償。<br>
-                    • <strong>即時協助：</strong> 遇設備問題請立即連繫現場人員，切勿自行拆解。
+                    • <strong>環境維護：</strong> 請保持環境清潔並輕聲細語。<br>
+                    • <strong>設備損壞：</strong> 若因操作不當致損毀須照價賠償。<br>
+                    • <strong>即時協助：</strong> 遇設備問題請立即連繫現場人員。
                 </div>
                 <span class="label">🗺️ 地圖導航 (點擊開啟)</span>
                 <div style="margin-top:10px; border-radius:12px; overflow:hidden; border:2px solid #ddd; cursor:pointer;" onclick="window.open('${mapUrl}', '_blank')"><img src="${item["地圖"]}" style="width:100%; display:block;"></div>
