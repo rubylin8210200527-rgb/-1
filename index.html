@@ -10,52 +10,53 @@
         body { font-family: "Microsoft JhengHei", sans-serif; background: #cbd5e1; margin: 0; padding-bottom: 110px; color: #334155; }
         .container { width: 100%; max-width: 500px; background: white; min-height: 100vh; margin: auto; position: relative; box-shadow: 0 0 20px rgba(0,0,0,0.2); }
         
-        /* 標題區 */
+        /* 標題與優勢 */
         .header { background: linear-gradient(135deg, #1e3a8a 0%, #2563eb 100%); color: white; padding: 25px 20px; text-align: center; }
-        .header h1 { margin: 0; font-size: 22px; letter-spacing: 1px; }
+        .header h1 { margin: 0; font-size: 22px; }
         .ttqs-badge { background: var(--accent); color: #000; display: inline-block; padding: 4px 15px; border-radius: 50px; font-size: 13px; font-weight: bold; margin-top: 10px; border: 2px solid white; }
-        
-        /* 四大優勢 */
         .pros-grid { display: grid; grid-template-columns: repeat(4, 1fr); padding: 20px 10px; background: #fff; gap: 5px; }
         .pro-item { text-align: center; font-size: 11px; font-weight: bold; color: var(--primary); }
         .pro-item i { display: block; font-size: 22px; margin-bottom: 8px; color: #3b82f6; }
         
-        /* 按鈕區 - 恢復漂亮排版 */
+        /* 按鈕區 */
         .corp-section { padding: 0 15px 20px; display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
-        .corp-card { 
-            display: flex; flex-direction: column; align-items: center; justify-content: center; 
-            min-height: 90px; padding: 10px; border-radius: 12px; text-decoration: none; 
-            color: white; text-align: center; font-weight: bold; font-size: 16px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); 
-        }
+        .corp-card { display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 90px; padding: 10px; border-radius: 12px; text-decoration: none; color: white; font-weight: bold; font-size: 16px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
         .btn-corp { background: linear-gradient(135deg, #f59e0b, #d97706); }
         .btn-teacher { background: linear-gradient(135deg, #10b981, #059669); }
         .corp-card i { font-size: 24px; margin-bottom: 8px; }
 
-        /* 🔴 閃爍紅球優惠區 - 重新設計不卡字 */
-        .price-section { margin-top: 15px; position: relative; padding: 0 5px; }
-        .price-tag { 
-            background: #fff4e5; border: 2px dashed #f59e0b; padding: 18px; 
-            border-radius: 12px; text-align: center; position: relative;
+        /* 🔴 隨動懸浮紅球 - 包含所有優惠資訊 */
+        .floating-promo {
+            position: fixed;
+            top: 60%; /* 初始位置 */
+            right: 15px;
+            width: 85px;
+            height: 85px;
+            background: radial-gradient(circle at 30% 30%, #ff4d4d, #b30000);
+            border-radius: 50%;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            box-shadow: 0 0 20px rgba(255,0,0,0.6);
+            border: 2px solid white;
+            z-index: 2000;
+            animation: bounce 1.2s infinite alternate ease-in-out;
+            cursor: pointer;
+            text-decoration: none;
         }
-        .old-price { text-decoration: line-through; color: #94a3b8; font-size: 15px; margin-right: 8px; }
-        .new-price { color: #ef4444; font-size: 19px; font-weight: bold; }
-        
-        .red-ball {
-            position: absolute; top: -12px; right: -5px;
-            width: 42px; height: 42px; background: #ff0000;
-            border-radius: 50%; color: white; display: flex;
-            align-items: center; justify-content: center;
-            font-size: 12px; font-weight: bold;
-            box-shadow: 0 0 15px rgba(255,0,0,0.7);
-            animation: pulse 1s infinite alternate;
-            z-index: 5; border: 2px solid white;
-        }
-        @keyframes pulse {
-            from { transform: scale(1); box-shadow: 0 0 10px #ff0000; }
-            to { transform: scale(1.15); box-shadow: 0 0 25px #ff0000; }
+        .floating-promo .old { font-size: 10px; text-decoration: line-through; opacity: 0.8; margin-bottom: 2px; }
+        .floating-promo .main { font-size: 13px; font-weight: bold; line-height: 1.2; }
+        .floating-promo .tag { background: white; color: #ff0000; font-size: 10px; padding: 1px 5px; border-radius: 10px; margin-top: 4px; font-weight: 900; }
+
+        @keyframes bounce {
+            from { transform: translateY(0); }
+            to { transform: translateY(-20px); }
         }
 
-        /* 租借系統分校選擇 */
+        /* 租借系統 */
         .section-title { background: #f8fafc; padding: 10px 20px; font-weight: bold; color: #64748b; border-top: 1px solid #eee; border-bottom: 1px solid #eee; font-size: 14px; }
         .filter-box { padding: 15px; }
         select { width: 100%; padding: 12px; border-radius: 10px; border: 2px solid #ddd; font-size: 16px; outline: none; background: white; }
@@ -63,7 +64,6 @@
         .tab-btn { padding: 12px 5px; background: white; border-radius: 10px; border: 1px solid #e2e8f0; font-weight: bold; cursor: pointer; text-align: center; color: #64748b; font-size: 14px; }
         .tab-btn.active { background: var(--primary); color: white; border-color: var(--primary); }
         
-        /* 內容顯示 */
         .carousel { width: 100%; height: 260px; overflow: hidden; position: relative; background: #000; }
         .track { display: flex; transition: 0.5s; height: 100%; }
         .track img { width: 100%; height: 100%; object-fit: cover; flex-shrink: 0; }
@@ -72,7 +72,6 @@
         .box { background: #f8fafc; padding: 15px; border-radius: 12px; font-size: 15px; line-height: 1.7; border: 1px solid #e2e8f0; }
         .notice { border: 2px solid #ef4444; color: #ef4444; background: #fef2f2; }
         
-        /* 底部導航 */
         .quick-action-bar { position: fixed; bottom: 0; left: 50%; transform: translateX(-50%); width: 100%; max-width: 500px; background: white; display: flex; justify-content: space-around; align-items: flex-end; padding: 10px 0 25px 0; box-shadow: 0 -5px 15px rgba(0,0,0,0.1); z-index: 1000; }
         .action-item { text-decoration: none; display: flex; flex-direction: column; align-items: center; gap: 5px; flex: 1; color: #475569; }
         .action-icon { width: 45px; height: 45px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 20px; color: white; }
@@ -82,6 +81,13 @@
     </style>
 </head>
 <body>
+
+<a href="https://lin.ee/X24MfFM" target="_blank" class="floating-promo">
+    <div class="old">$2,250</div>
+    <div class="main">優惠價<br>洽詢</div>
+    <div class="tag">HOT</div>
+</a>
+
 <div class="container">
     <div class="header">
         <h1>聯成電腦 | 專業培訓空間</h1>
@@ -165,14 +171,6 @@
                 <span class="label">📍 ${item["分校"]} 分校地址</span>
                 <div class="box" style="background:#fffbeb; font-weight:bold; color:#b45309;">${item["地址"] || "請參考地圖導航"}</div>
                 
-                <div class="price-section">
-                    <div class="red-ball">優惠</div>
-                    <div class="price-tag">
-                        <span class="old-price">原價 $2,250</span>
-                        <span class="new-price">✨ 優惠價：洽詢 LINE</span>
-                    </div>
-                </div>
-
                 <span class="label">💎 為什麼選擇聯成電腦教室？</span>
                 <div class="box">• <strong>地標級位置：</strong> 均鄰近交通樞紐。<br>• <strong>標準化教學配置：</strong> 內建廣播系統。</div>
                 <span class="label">⚠️ 租借注意事項</span>
