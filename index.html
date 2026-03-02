@@ -3,60 +3,64 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>聯成電腦 | 專業培訓空間租借</title>
+    <title>聯成電腦 | 專案培訓服務</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        :root { --primary: #1e3a8a; --accent: #f59e0b; --bg: #f1f5f9; }
-        body { font-family: "Microsoft JhengHei", sans-serif; background: #cbd5e1; margin: 0; padding-bottom: 110px; color: #334155; }
+        :root { --primary: #1e3a8a; --accent: #f59e0b; --line-green: #22c55e; --blue-light: #eff6ff; --orange-light: #fff7ed; }
+        body { font-family: "Microsoft JhengHei", sans-serif; background: #cbd5e1; margin: 0; padding-bottom: 120px; color: #334155; }
         .container { width: 100%; max-width: 500px; background: white; min-height: 100vh; margin: auto; position: relative; box-shadow: 0 0 20px rgba(0,0,0,0.2); }
         
         /* Header */
-        .header { background: linear-gradient(135deg, #1e3a8a 0%, #2563eb 100%); color: white; padding: 25px 20px; text-align: center; }
-        .header h1 { margin: 0; font-size: 22px; letter-spacing: 1px; }
-        .ttqs-badge { background: var(--accent); color: #000; display: inline-block; padding: 4px 15px; border-radius: 50px; font-size: 13px; font-weight: bold; margin-top: 10px; border: 2px solid white; }
+        .header { background: linear-gradient(135deg, #1e3a8a 0%, #2563eb 100%); color: white; padding: 20px; text-align: center; }
+        .header h1 { margin: 0; font-size: 20px; letter-spacing: 1px; }
 
-        /* 🔴 懸浮紅球 */
+        /* 2. 頂部兩大分類色塊 */
+        .category-section { display: flex; padding: 15px; gap: 12px; background: #fff; }
+        .cat-card { 
+            flex: 1; padding: 15px 10px; border-radius: 12px; text-align: center; 
+            cursor: pointer; display: flex; flex-direction: column; align-items: center; gap: 5px;
+            text-decoration: none;
+        }
+        .cat-corporate { background: var(--blue-light); color: #1e40af; border: 2px solid #bfdbfe; }
+        .cat-outsource { background: var(--orange-light); color: #9a3412; border: 2px solid #ffedd5; }
+        .cat-card i { font-size: 20px; }
+        .cat-card span { font-weight: bold; font-size: 14px; }
+
+        /* 1. 🔴 懸浮紅球 (直連 LINE) */
         .floating-promo {
-            position: fixed; top: 65%; right: 10px; width: 85px; height: 85px; 
+            position: fixed; top: 60%; right: 10px; width: 80px; height: 80px; 
             background: radial-gradient(circle at 30% 30%, #ff4d4d, #b30000);
             border-radius: 50%; color: white; display: flex; flex-direction: column; 
             align-items: center; justify-content: center; text-align: center; 
-            box-shadow: 0 5px 15px rgba(255,0,0,0.5); border: 2px solid white; z-index: 2000;
-            animation: bounce 1.2s infinite alternate ease-in-out; cursor: pointer;
+            box-shadow: 0 5px 15px rgba(255,0,0,0.4); border: 2px solid white; z-index: 2000;
+            animation: bounce 1.2s infinite alternate ease-in-out; text-decoration: none;
         }
-        @keyframes bounce { from { transform: translateY(0); } to { transform: translateY(-15px); } }
+        @keyframes bounce { from { transform: translateY(0); } to { transform: translateY(-12px); } }
 
-        /* 🖼️ LINE 彈出視窗 */
-        #qr-modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); z-index: 3000; align-items: center; justify-content: center; }
-        .modal-content { background: white; padding: 25px; border-radius: 20px; text-align: center; width: 80%; max-width: 300px; position: relative; }
-        .modal-content img { width: 100%; height: auto; margin: 15px 0; border-radius: 8px; }
-        .close-btn { position: absolute; top: -10px; right: -10px; background: #ff4d4d; color: white; width: 35px; height: 35px; border-radius: 50%; border: none; font-weight: bold; cursor: pointer; }
+        /* LINE 彈窗 */
+        #qr-modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); z-index: 3000; align-items: center; justify-content: center; }
+        .modal-content { background: white; padding: 25px; border-radius: 20px; text-align: center; width: 80%; max-width: 280px; position: relative; }
+        .modal-content img { width: 100%; height: auto; margin: 10px 0; border-radius: 10px; }
+        .close-btn { position: absolute; top: -10px; right: -10px; background: #334155; color: white; width: 30px; height: 30px; border-radius: 50%; border: 2px solid white; cursor: pointer; }
 
-        /* 找回來的兩大分類按鈕 */
-        .category-tabs { display: flex; padding: 15px; gap: 10px; background: #fff; border-bottom: 1px solid #eee; }
-        .cat-btn { flex: 1; padding: 12px; border-radius: 12px; border: 2px solid #e2e8f0; background: #f8fafc; font-weight: bold; cursor: pointer; text-align: center; transition: 0.3s; color: #64748b; }
-        .cat-btn.active { background: #fffbeb; border-color: var(--accent); color: #b45309; box-shadow: 0 4px 10px rgba(245,158,11,0.2); }
-
-        /* 篩選與分校選單 */
-        .filter-box { padding: 15px; background: #f8fafc; }
+        /* 選單與內容 */
+        .filter-box { padding: 10px 15px; background: #f8fafc; border-top: 1px solid #eee; }
         select { width: 100%; padding: 12px; border-radius: 10px; border: 2px solid #cbd5e1; font-size: 16px; font-weight: bold; color: var(--primary); }
         .tabs { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; padding: 15px; }
         .tab-btn { padding: 10px; background: #f1f5f9; border-radius: 8px; border: 1px solid #e2e8f0; font-weight: bold; cursor: pointer; text-align: center; font-size: 14px; color: #64748b; }
-        .tab-btn.active { background: var(--primary); color: white; border-color: var(--primary); }
-        
-        /* 內容區 */
+        .tab-btn.active { background: var(--primary); color: white; }
         .content { padding: 0 20px 20px; }
-        .label { font-weight: bold; color: var(--primary); border-left: 5px solid var(--primary); padding-left: 10px; margin: 25px 0 10px; display: block; font-size: 16px; }
-        .box { background: #f8fafc; padding: 15px; border-radius: 12px; font-size: 14px; line-height: 1.7; border: 1px solid #e2e8f0; white-space: pre-line; color: #475569; }
-        .img-container { width: 100%; height: 260px; border-radius: 15px; overflow: hidden; background: #000; margin-bottom: 10px; }
+        .label { font-weight: bold; color: var(--primary); border-left: 5px solid var(--primary); padding-left: 10px; margin: 25px 0 10px; display: block; font-size: 15px; }
+        .box { background: #f8fafc; padding: 15px; border-radius: 12px; font-size: 14px; line-height: 1.6; border: 1px solid #e2e8f0; white-space: pre-line; color: #475569; }
+        .img-container { width: 100%; height: 240px; border-radius: 15px; overflow: hidden; background: #000; margin-bottom: 10px; }
         .img-container img { width: 100%; height: 100%; object-fit: cover; }
 
-        /* 底部導航修復 */
-        .quick-action-bar { position: fixed; bottom: 0; left: 50%; transform: translateX(-50%); width: 100%; max-width: 500px; background: white; display: flex; justify-content: space-around; align-items: flex-end; padding: 10px 0 25px 0; box-shadow: 0 -5px 15px rgba(0,0,0,0.1); z-index: 1000; }
-        .action-item { text-decoration: none !important; display: flex; flex-direction: column; align-items: center; gap: 5px; flex: 1; color: #475569; cursor: pointer; }
+        /* 3. 底部導航 (電話功能修復) */
+        .quick-action-bar { position: fixed; bottom: 0; left: 50%; transform: translateX(-50%); width: 100%; max-width: 500px; background: white; display: flex; justify-content: space-around; align-items: flex-end; padding: 10px 0 30px 0; box-shadow: 0 -5px 15px rgba(0,0,0,0.1); z-index: 1000; }
+        .action-item { text-decoration: none !important; display: flex; flex-direction: column; align-items: center; gap: 5px; flex: 1; color: #475569; }
         .action-icon { width: 45px; height: 45px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 20px; color: white; }
         .bg-blue { background: #2563eb; } .bg-green { background: #22c55e; } .bg-red { background: #ef4444; }
-        .main-icon { width: 60px !important; height: 60px !important; font-size: 30px !important; margin-top: -20px; border: 5px solid white; box-shadow: 0 4px 15px rgba(0,0,0,0.2); }
+        .main-icon { width: 60px !important; height: 60px !important; font-size: 30px !important; margin-top: -20px; border: 5px solid white; box-shadow: 0 4px 12px rgba(0,0,0,0.15); }
     </style>
 </head>
 <body>
@@ -64,22 +68,33 @@
 <div id="qr-modal" onclick="closeQR()">
     <div class="modal-content" onclick="event.stopPropagation()">
         <button class="close-btn" onclick="closeQR()">✕</button>
-        <h3 style="margin:0; color:#1e3a8a;">專案部 真人諮詢</h3>
+        <h4 style="margin:0; color:#1e3a8a;">專案部 真人諮詢</h4>
         <img src="./lineqr.png" alt="LINE QR">
         <a href="https://line.me/R/oaMessage/@071yewow/?%E8%AB%8B%E7%99%BC%E9%80%81%E8%A8%8A%E6%81%AF%E5%AE%8C%E6%88%90%E6%8C%87%E6%B4%BE:%20assignToAgent._V0P1dV" 
-           target="_blank" style="display:block; background:#22c55e; color:white; text-decoration:none; padding:12px; border-radius:10px; font-weight:bold;">點此啟動真人客服</a>
+           target="_blank" style="display:block; background:var(--line-green); color:white; text-decoration:none; padding:12px; border-radius:10px; font-weight:bold; font-size:14px;">點此啟動 LINE 對話</a>
     </div>
 </div>
 
+<a href="https://line.me/R/oaMessage/@071yewow/?%E8%AB%8B%E7%99%BC%E9%80%81%E8%A8%8A%E6%81%AF%E5%AE%8C%E6%88%90%E6%8C%87%E6%B4%BE:%20assignToAgent._V0P1dV" class="floating-promo" target="_blank">
+    <div style="font-size:10px; text-decoration:line-through; opacity:0.8;">$2,250</div>
+    <div style="font-size:13px; font-weight:bold;">優惠價<br>洽詢</div>
+    <div style="font-size:9px; background:white; color:red; padding:2px 6px; border-radius:4px; margin-top:3px; font-weight:900;">LINE</div>
+</a>
+
 <div class="container">
     <div class="header">
-        <h1>聯成電腦 | 專業培訓空間</h1>
-        <div class="ttqs-badge">🏆 國家級培訓場地認證</div>
+        <h1>聯成電腦 | 專案培訓服務</h1>
     </div>
 
-    <div class="category-tabs">
-        <div class="cat-btn active" onclick="alert('目前顯示：企業包班資訊')">企業包班</div>
-        <div class="cat-btn" onclick="alert('目前顯示：講師外派資訊')">講師外派</div>
+    <div class="category-section">
+        <a href="https://line.me/R/oaMessage/@071yewow/?%E8%AB%8B%E7%99%BC%E9%80%81%E8%A8%8A%E6%81%AF%E5%AE%8C%E6%88%90%E6%8C%87%E6%B4%BE:%20assignToAgent._V0P1dV" target="_blank" class="cat-card cat-corporate">
+            <i class="fas fa-building"></i>
+            <span>企業包班</span>
+        </a>
+        <a href="https://line.me/R/oaMessage/@071yewow/?%E8%AB%8B%E7%99%BC%E9%80%81%E8%A8%8A%E6%81%AF%E5%AE%8C%E6%88%90%E6%8C%87%E6%B4%BE:%20assignToAgent._V0P1dV" target="_blank" class="cat-card cat-outsource">
+            <i class="fas fa-user-tie"></i>
+            <span>講師外派</span>
+        </a>
     </div>
     
     <div class="filter-box">
@@ -95,7 +110,7 @@
         </a>
         <div class="action-item" onclick="openQR()">
             <div class="action-icon bg-green main-icon"><i class="fab fa-line"></i></div>
-            <span class="action-text" style="color:#22c55e; font-weight:bold;">LINE 諮詢</span>
+            <span class="action-text" style="color:var(--line-green); font-weight:bold;">LINE 諮詢</span>
         </div>
         <a href="tel:0979647073" class="action-item">
             <div class="action-icon bg-red"><i class="fas fa-phone-alt"></i></div>
@@ -105,12 +120,11 @@
 </div>
 
 <script>
-    // 資料結構保持 16 間分校
     const dataList = [
-        {"區域":"北區","分校":"忠孝","地址":"臺北市忠孝東路四段178號4樓","教室照片1":"https://i.postimg.cc/PqmKsHdX/zhong-xiao-0105(1).jpg","注意事項":"‧請維護環境清潔。\n‧電腦教室一人一機環境。","地圖":"https://i.postimg.cc/SNJrQCyj/de-tu.jpg","交通":"捷運『忠孝敦化站』3號出口，上4樓"},
-        {"區域":"北區","分校":"館前","地址":"臺北市館前路2號5樓","教室照片1":"https://i.postimg.cc/kgKMDzpk/0201.jpg","注意事項":"‧請維護清潔並輕聲細語。","地圖":"https://i.postimg.cc/wjpM59LM/de-tu.jpg","交通":"捷運『台北車站』Z6出口，國泰世華旁電梯"},
+        {"區域":"北區","分校":"忠孝","地址":"臺北市忠孝東路四段178號4樓","教室照片1":"https://i.postimg.cc/PqmKsHdX/zhong-xiao-0105(1).jpg","注意事項":"‧請維護環境清潔。\n‧電腦教室一人一機環境。","地圖":"https://i.postimg.cc/SNJrQCyj/de-tu.jpg","交通":"捷運『忠孝敦化站』3號出口"},
+        {"區域":"北區","分校":"館前","地址":"臺北市館前路2號5樓","教室照片1":"https://i.postimg.cc/kgKMDzpk/0201.jpg","注意事項":"‧請維護清潔並輕聲細語。","地圖":"https://i.postimg.cc/wjpM59LM/de-tu.jpg","交通":"捷運『台北車站』Z6出口"},
         {"區域":"北區","分校":"板橋","地址":"新北市板橋區府中路29-1號6樓","教室照片1":"https://i.postimg.cc/7h9TqbGB/0201.jpg","注意事項":"‧專業教室請愛惜使用。","地圖":"https://i.postimg.cc/RZyJSkF2/de-tu.jpg","交通":"捷運府中站1號出口"},
-        {"區域":"北區","分校":"永和","地址":"新北市永和區永和路二段59號4樓","教室照片1":"https://i.postimg.cc/mgH2wtLX/3602-yong-he-fen-xiao.jpg","注意事項":"‧請維護環境清潔。","地圖":"https://i.postimg.cc/9XgmHGr4/de-tu.jpg","交通":"捷運頂溪站1號出口步行約150公尺"},
+        {"區域":"北區","分校":"永和","地址":"新北市永和區永和路二段59號4樓","教室照片1":"https://i.postimg.cc/mgH2wtLX/3602-yong-he-fen-xiao.jpg","注意事項":"‧請維護環境清潔。","地圖":"https://i.postimg.cc/9XgmHGr4/de-tu.jpg","交通":"捷運頂溪站1號出口"},
         {"區域":"北區","分校":"桃園","地址":"桃園市桃園區大同路11號4樓","教室照片1":"https://i.postimg.cc/sDRrrw3f/0701.jpg","注意事項":"‧專業培訓空間，請輕聲細語。","地圖":"https://i.postimg.cc/vmDRzKtv/1770602734023.jpg","交通":"桃園火車站出站往左"},
         {"區域":"北區","分校":"中壢","地址":"桃園市中壢區中正路183號1-3樓","教室照片1":"https://i.postimg.cc/4xLqm5RH/1101.png","注意事項":"‧請愛惜使用電腦設備。","地圖":"https://i.postimg.cc/vZN2QZ51/de-tu.jpg","交通":"中壢火車站前"},
         {"區域":"北區","分校":"新竹","地址":"新竹市中華路二段318號1-3樓","教室照片1":"https://i.postimg.cc/y8gXyXSz/1402-02.jpg","注意事項":"‧專業培訓空間。","地圖":"https://i.postimg.cc/KjpBnRGP/de-tu.jpg","交通":"新竹火車站右轉"},
@@ -157,7 +171,7 @@
                 <span class="label">⚠️ 注意事項</span>
                 <div class="box" style="color:#ef4444; background:#fef2f2;">${item["注意事項"]}</div>
                 <span class="label">🗺️ 地圖導航</span>
-                <div style="margin-top:10px; border-radius:12px; overflow:hidden; border:2px solid #ddd; cursor:pointer;" onclick="window.open('https://www.google.com/maps/search/?api=1&query=${encodeURIComponent("聯成電腦"+item["分校"])}', '_blank')">
+                <div style="margin-top:10px; border-radius:12px; overflow:hidden; border:2px solid #ddd; cursor:pointer;" onclick="window.open('https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent('聯成電腦' + item['分校']), '_blank')">
                     <img src="${item["地圖"]}" style="width:100%; display:block;">
                 </div>
             </div>`;
