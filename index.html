@@ -3,90 +3,73 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>聯成電腦 | 專業培訓空間</title>
+    <title>聯成電腦 | 專業培訓空間租借</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root { --primary: #1e3a8a; --accent: #f59e0b; --bg: #f1f5f9; }
         body { font-family: "Microsoft JhengHei", sans-serif; background: #cbd5e1; margin: 0; padding-bottom: 110px; color: #334155; }
         .container { width: 100%; max-width: 500px; background: white; min-height: 100vh; margin: auto; position: relative; box-shadow: 0 0 20px rgba(0,0,0,0.2); }
         
-        /* 標題與優勢 */
+        /* Header */
         .header { background: linear-gradient(135deg, #1e3a8a 0%, #2563eb 100%); color: white; padding: 25px 20px; text-align: center; }
-        .header h1 { margin: 0; font-size: 22px; }
+        .header h1 { margin: 0; font-size: 22px; letter-spacing: 1px; }
         .ttqs-badge { background: var(--accent); color: #000; display: inline-block; padding: 4px 15px; border-radius: 50px; font-size: 13px; font-weight: bold; margin-top: 10px; border: 2px solid white; }
-        .pros-grid { display: grid; grid-template-columns: repeat(4, 1fr); padding: 20px 10px; background: #fff; gap: 5px; }
-        .pro-item { text-align: center; font-size: 11px; font-weight: bold; color: var(--primary); }
-        .pro-item i { display: block; font-size: 22px; margin-bottom: 8px; color: #3b82f6; }
-        
-        /* 按鈕區 */
-        .corp-section { padding: 0 15px 20px; display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
-        .corp-card { display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 90px; padding: 10px; border-radius: 12px; text-decoration: none; color: white; font-weight: bold; font-size: 16px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
-        .btn-corp { background: linear-gradient(135deg, #f59e0b, #d97706); }
-        .btn-teacher { background: linear-gradient(135deg, #10b981, #059669); }
-        .corp-card i { font-size: 24px; margin-bottom: 8px; }
 
-        /* 🔴 隨動懸浮紅球 - 包含所有優惠資訊 */
+        /* 🔴 懸浮紅球 */
         .floating-promo {
-            position: fixed;
-            top: 60%; /* 初始位置 */
-            right: 15px;
-            width: 85px;
-            height: 85px;
+            position: fixed; top: 65%; right: 10px; width: 85px; height: 85px; 
             background: radial-gradient(circle at 30% 30%, #ff4d4d, #b30000);
-            border-radius: 50%;
-            color: white;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            box-shadow: 0 0 20px rgba(255,0,0,0.6);
-            border: 2px solid white;
-            z-index: 2000;
-            animation: bounce 1.2s infinite alternate ease-in-out;
-            cursor: pointer;
-            text-decoration: none;
+            border-radius: 50%; color: white; display: flex; flex-direction: column; 
+            align-items: center; justify-content: center; text-align: center; 
+            box-shadow: 0 5px 15px rgba(255,0,0,0.5); border: 2px solid white; z-index: 2000;
+            animation: bounce 1.2s infinite alternate ease-in-out; cursor: pointer;
         }
-        .floating-promo .old { font-size: 10px; text-decoration: line-through; opacity: 0.8; margin-bottom: 2px; }
-        .floating-promo .main { font-size: 13px; font-weight: bold; line-height: 1.2; }
-        .floating-promo .tag { background: white; color: #ff0000; font-size: 10px; padding: 1px 5px; border-radius: 10px; margin-top: 4px; font-weight: 900; }
+        @keyframes bounce { from { transform: translateY(0); } to { transform: translateY(-15px); } }
 
-        @keyframes bounce {
-            from { transform: translateY(0); }
-            to { transform: translateY(-20px); }
-        }
+        /* 🖼️ LINE 彈出視窗 */
+        #qr-modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); z-index: 3000; align-items: center; justify-content: center; }
+        .modal-content { background: white; padding: 25px; border-radius: 20px; text-align: center; width: 80%; max-width: 300px; position: relative; }
+        .modal-content img { width: 100%; height: auto; margin: 15px 0; border-radius: 8px; }
+        .close-btn { position: absolute; top: -10px; right: -10px; background: #ff4d4d; color: white; width: 35px; height: 35px; border-radius: 50%; border: none; font-weight: bold; cursor: pointer; }
 
-        /* 租借系統 */
-        .section-title { background: #f8fafc; padding: 10px 20px; font-weight: bold; color: #64748b; border-top: 1px solid #eee; border-bottom: 1px solid #eee; font-size: 14px; }
-        .filter-box { padding: 15px; }
-        select { width: 100%; padding: 12px; border-radius: 10px; border: 2px solid #ddd; font-size: 16px; outline: none; background: white; }
-        .tabs { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; padding: 0 15px 15px; }
-        .tab-btn { padding: 12px 5px; background: white; border-radius: 10px; border: 1px solid #e2e8f0; font-weight: bold; cursor: pointer; text-align: center; color: #64748b; font-size: 14px; }
-        .tab-btn.active { background: var(--primary); color: white; border-color: var(--primary); }
+        /* 篩選與選單 */
+        .filter-box { padding: 15px; background: #f8fafc; border-bottom: 1px solid #e2e8f0; }
+        select { width: 100%; padding: 12px; border-radius: 10px; border: 2px solid #cbd5e1; font-size: 16px; font-weight: bold; color: var(--primary); outline: none; }
+        .tabs { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; padding: 15px; background: #fff; }
+        .tab-btn { padding: 10px; background: #f1f5f9; border-radius: 8px; border: 1px solid #e2e8f0; font-weight: bold; cursor: pointer; text-align: center; font-size: 14px; color: #64748b; transition: 0.3s; }
+        .tab-btn.active { background: var(--primary); color: white; border-color: var(--primary); box-shadow: 0 4px 10px rgba(30,58,138,0.3); }
         
-        .carousel { width: 100%; height: 260px; overflow: hidden; position: relative; background: #000; }
-        .track { display: flex; transition: 0.5s; height: 100%; }
-        .track img { width: 100%; height: 100%; object-fit: cover; flex-shrink: 0; }
-        .content { padding: 20px; }
-        .label { font-weight: bold; color: var(--primary); border-left: 5px solid var(--primary); padding-left: 10px; margin: 20px 0 10px; display: block; font-size: 16px; }
-        .box { background: #f8fafc; padding: 15px; border-radius: 12px; font-size: 15px; line-height: 1.7; border: 1px solid #e2e8f0; }
-        .notice { border: 2px solid #ef4444; color: #ef4444; background: #fef2f2; }
-        
+        /* 內容區 */
+        .content { padding: 0 20px 20px; }
+        .label { font-weight: bold; color: var(--primary); border-left: 5px solid var(--primary); padding-left: 10px; margin: 25px 0 10px; display: block; font-size: 16px; }
+        .box { background: #f8fafc; padding: 15px; border-radius: 12px; font-size: 14px; line-height: 1.7; border: 1px solid #e2e8f0; white-space: pre-line; color: #475569; }
+        .img-container { width: 100%; height: 260px; border-radius: 15px; overflow: hidden; background: #000; box-shadow: 0 4px 12px rgba(0,0,0,0.1); margin-bottom: 10px; }
+        .img-container img { width: 100%; height: 100%; object-fit: cover; }
+
+        /* 底部導航 */
         .quick-action-bar { position: fixed; bottom: 0; left: 50%; transform: translateX(-50%); width: 100%; max-width: 500px; background: white; display: flex; justify-content: space-around; align-items: flex-end; padding: 10px 0 25px 0; box-shadow: 0 -5px 15px rgba(0,0,0,0.1); z-index: 1000; }
         .action-item { text-decoration: none; display: flex; flex-direction: column; align-items: center; gap: 5px; flex: 1; color: #475569; }
         .action-icon { width: 45px; height: 45px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 20px; color: white; }
         .bg-blue { background: #2563eb; } .bg-green { background: #22c55e; } .bg-red { background: #ef4444; }
-        .action-text { font-size: 11px; font-weight: bold; }
         .main-icon { width: 60px !important; height: 60px !important; font-size: 30px !important; margin-top: -20px; border: 5px solid white; box-shadow: 0 4px 15px rgba(0,0,0,0.2); }
     </style>
 </head>
 <body>
 
-<a href="https://lin.ee/X24MfFM" target="_blank" class="floating-promo">
-    <div class="old">$2,250</div>
-    <div class="main">優惠價<br>洽詢</div>
-    <div class="tag">HOT</div>
-</a>
+<div id="qr-modal" onclick="closeQR()">
+    <div class="modal-content" onclick="event.stopPropagation()">
+        <button class="close-btn" onclick="closeQR()">✕</button>
+        <h3 style="margin:0; color:#1e3a8a;">專案部 LINE 諮詢</h3>
+        <img src="./%E5%B0%88%E6%A1%88%E9%83%A8%EF%BC%8D%E4%BC%81%E6%A5%AD%E5%9C%98%E9%9A%8A%20-%20LINEQR%20(1).png">
+        <a href="https://line.me/ti/p/X24MfFM" target="_blank" style="display:block; background:#22c55e; color:white; text-decoration:none; padding:12px; border-radius:10px; font-weight:bold;">點此直接開啟 LINE</a>
+    </div>
+</div>
+
+<div class="floating-promo" onclick="openQR()">
+    <div style="font-size:10px; text-decoration:line-through; opacity:0.8;">$2,250</div>
+    <div style="font-size:13px; font-weight:bold;">優惠價<br>洽詢</div>
+    <div style="font-size:9px; background:white; color:red; padding:2px 6px; border-radius:4px; margin-top:3px; font-weight:900;">HOT</div>
+</div>
 
 <div class="container">
     <div class="header">
@@ -94,38 +77,21 @@
         <div class="ttqs-badge">🏆 通過國家級 TTQS 品質認證</div>
     </div>
     
-    <div class="pros-grid">
-        <div class="pro-item"><i class="fas fa-bullhorn"></i>螢幕廣播</div>
-        <div class="pro-item"><i class="fas fa-map-marker-alt"></i>地標位置</div>
-        <div class="pro-item"><i class="fas fa-check-double"></i>標準配置</div>
-        <div class="pro-item"><i class="fas fa-broom"></i>純淨環境</div>
+    <div class="filter-box">
+        <select id="region-sel" onchange="changeRegion()"></select>
     </div>
-
-    <div class="corp-section">
-        <a href="https://lin.ee/X24MfFM?text=詢問客製化企業包班" target="_blank" class="corp-card btn-corp">
-            <i class="fas fa-users-cog"></i>客製化包班
-        </a>
-        <a href="tel:0979647073" class="corp-card btn-teacher">
-            <i class="fas fa-user-tie"></i>講師外派
-        </a>
-    </div>
-
-    <div class="section-title"><i class="fas fa-door-open" style="margin-right:8px;"></i>場地空間租借系統</div>
-    <div id="rent-system">
-        <div class="filter-box"><select id="region-sel" onchange="changeRegion()"></select></div>
-        <div id="tab-list" class="tabs"></div>
-        <div id="display"><div style="text-align:center; padding:50px;">載入中...</div></div>
-    </div>
+    <div id="tab-list" class="tabs"></div>
+    <div id="display"></div>
 
     <div class="quick-action-bar">
-        <a href="https://lin.ee/X24MfFM" target="_blank" class="action-item">
+        <a href="https://line.me/ti/p/X24MfFM" target="_blank" class="action-item">
             <div class="action-icon bg-blue"><i class="fas fa-comment-dots"></i></div>
             <span class="action-text">詢問報價</span>
         </a>
-        <a href="https://lin.ee/X24MfFM" target="_blank" class="action-item">
+        <div class="action-item" onclick="openQR()">
             <div class="action-icon bg-green main-icon"><i class="fab fa-line"></i></div>
-            <span class="action-text" style="color:#22c55e;">LINE 諮詢</span>
-        </a>
+            <span class="action-text" style="color:#22c55e; font-weight:bold;">LINE 諮詢</span>
+        </div>
         <a href="tel:0979647073" class="action-item">
             <div class="action-icon bg-red"><i class="fas fa-phone-alt"></i></div>
             <span class="action-text">電話預約</span>
@@ -134,57 +100,74 @@
 </div>
 
 <script>
-    const API_URL = "https://script.google.com/macros/s/AKfycbzcIqXFJa5YuOC7bGjVWqp1MoXK8_7E3mJcmmAcoO2b8od4RWZVQXPTBjU3X20Q9Qc9/exec";
-    const BRAND = "聯成電腦";
-    let dataList = []; let timer = null;
-    
-    async function loadData() {
-        try { 
-            const res = await fetch(API_URL); 
-            dataList = await res.json(); 
-            const regions = [...new Set(dataList.map(d => d["區域"]))]; 
-            document.getElementById('region-sel').innerHTML = regions.map(r => `<option value="${r}">${r}</option>`).join(''); 
-            changeRegion(); 
-        } catch (e) { document.getElementById('display').innerHTML = "資料載入失敗"; }
+    // 完整資料導入
+    const dataList = [
+        {"區域":"北區","分校":"忠孝","地址":"臺北市忠孝東路四段178號4樓","教室照片1":"https://i.postimg.cc/PqmKsHdX/zhong-xiao-0105(1).jpg","注意事項":"‧本中心為電腦上課專業教室，請維護環境清潔。\n‧電腦教室為一人一機，如有損壞須照價賠償。","地圖":"https://i.postimg.cc/SNJrQCyj/de-tu.jpg","交通":"捷運『忠孝敦化站』3號出口，大學眼科旁入口電梯上4樓"},
+        {"區域":"北區","分校":"館前","地址":"臺北市館前路2號5樓","教室照片1":"https://i.postimg.cc/kgKMDzpk/0201.jpg","注意事項":"‧請維護環境清潔並輕聲細語。\n‧電腦教室請愛惜使用。","地圖":"https://i.postimg.cc/wjpM59LM/de-tu.jpg","交通":"捷運『台北車站』，台北地下街Z6出口右轉國泰世華旁電梯上5樓"},
+        {"區域":"北區","分校":"板橋","地址":"新北市板橋區府中路29-1號6樓","教室照片1":"https://i.postimg.cc/7h9TqbGB/0201.jpg","注意事項":"‧本中心為專業教室，請維持清潔。","地圖":"https://i.postimg.cc/RZyJSkF2/de-tu.jpg","交通":"捷運府中站1號出口，全家旁電梯上6樓"},
+        {"區域":"北區","分校":"永和","地址":"新北市永和區永和路二段59號4樓","教室照片1":"https://i.postimg.cc/mgH2wtLX/3602-yong-he-fen-xiao.jpg","注意事項":"‧使用公共設施請維護清潔。","地圖":"https://i.postimg.cc/9XgmHGr4/de-tu.jpg","交通":"捷運『頂溪站』1號出口左轉，步行約150公尺至彰化銀行旁"},
+        {"區域":"北區","分校":"桃園","地址":"桃園市桃園區大同路11號4樓","教室照片1":"https://i.postimg.cc/sDRrrw3f/0701.jpg","注意事項":"‧電腦上課專業教室，請輕聲細語。","地圖":"https://i.postimg.cc/vmDRzKtv/1770602734023.jpg","交通":"桃園火車站出站往左，萬壽路出口往前50公尺，錢都樓上4樓"},
+        {"區域":"北區","分校":"中壢","地址":"桃園市中壢區中正路183號1-3樓","教室照片1":"https://i.postimg.cc/4xLqm5RH/1101.png","注意事項":"‧一人一機環境，請愛惜使用。","地圖":"https://i.postimg.cc/vZN2QZ51/de-tu.jpg","交通":"中壢火車站前，華南銀行旁邊第四家"},
+        {"區域":"北區","分校":"新竹","地址":"新竹市中華路二段318號1-3樓","教室照片1":"https://i.postimg.cc/y8gXyXSz/1402-02.jpg","注意事項":"‧專業電腦培訓空間，請維持清潔。","地圖":"https://i.postimg.cc/KjpBnRGP/de-tu.jpg","交通":"新竹火車站右轉，台電大樓旁"},
+        {"區域":"中區","分校":"三民","地址":"臺中市北區三民路三段112號5樓","教室照片1":"https://i.postimg.cc/Z5wDs4Kd/0802.jpg","注意事項":"‧專業培訓教室，請維護環境清潔。","地圖":"https://i.postimg.cc/FKQ1q5Wm/de-tu.jpg","交通":"台中科技大學正對面，轉角上品大廈5樓"},
+        {"區域":"中區","分校":"彰化","地址":"彰化縣彰化市中正路一段544號","教室照片1":"https://i.postimg.cc/x1MNdszs/1521.jpg","注意事項":"‧請勿在教室內大聲喧嘩。","地圖":"https://i.postimg.cc/mDXtnJ0v/1770603513455.jpg","交通":"彰化火車站前站出口，往麥當勞方向步行2分鐘"},
+        {"區域":"中區","分校":"台中站前","地址":"台中市中區建國路123號3樓","教室照片1":"https://i.postimg.cc/5yJpyHPr/1902.jpg","注意事項":"‧專業培訓空間，請愛惜公物。","地圖":"https://i.postimg.cc/hvKbgkj3/de-tu.jpg","交通":"舊台中火車站前站，路得行旅同棟"},
+        {"區域":"中區","分校":"豐原","地址":"臺中市豐原區中正路116號1-3樓","教室照片1":"https://i.postimg.cc/zvLDLBVf/3501-01.jpg","注意事項":"‧一人一機專業配置，請維護整潔。","地圖":"https://i.postimg.cc/cHPCBwqt/1770606137746.jpg","交通":"豐原火車站前站出口左方150公尺，豐安醫院對面"},
+        {"區域":"南區","分校":"台南","地址":"臺南市成功路57號","教室照片1":"https://i.postimg.cc/wT1vbWxh/1001.jpg","注意事項":"‧台南專業培訓基地，請維持清潔。","地圖":"https://i.postimg.cc/JhMRmKmL/1770608257388.jpg","交通":"台南火車站前站，通往成功路，中油站對面"},
+        {"區域":"南區","分校":"嘉義","地址":"嘉義市中正路709號","教室照片1":"https://i.postimg.cc/T3TXs6b1/1601.jpg","注意事項":"‧環境優良，請維持安靜。","地圖":"https://i.postimg.cc/15QxgQJw/1770614892797.jpg","交通":"嘉義火車站右前方"},
+        {"區域":"南區","分校":"鳳山","地址":"高雄市鳳山區光遠路181號","教室照片1":"https://i.postimg.cc/63frYCxr/1201.jpg","注意事項":"‧本中心為專業教室，請勿喧嘩。","地圖":"https://i.postimg.cc/JnMJDtHh/de-tu.jpg","交通":"大東捷運站2號出口，直走經大東醫院後即達"},
+        {"區域":"南區","分校":"高雄","地址":"高雄市中山一路243號","教室照片1":"https://i.postimg.cc/VvbYzWs0/902.jpg","注意事項":"‧鄰近捷運站，請保持環境衛生。","地圖":"https://i.postimg.cc/g2p6Bn4B/de-tu.jpg","交通":"捷運美麗島站11號出口，步行5分鐘"},
+        {"區域":"南區","分校":"屏東","地址":"屏東縣屏東市中山路25號","教室照片1":"https://i.postimg.cc/261CFb9L/1301.jpg","注意事項":"‧電腦教室請愛惜使用，維護環境清潔。","地圖":"https://i.postimg.cc/BnJs7wwq/1770625570590.jpg","交通":"屏東火車站步行10分鐘，21世紀風味館隔壁"}
+    ];
+
+    function openQR() { document.getElementById('qr-modal').style.display = 'flex'; }
+    function closeQR() { document.getElementById('qr-modal').style.display = 'none'; }
+
+    function init() {
+        const regions = [...new Set(dataList.map(d => d["區域"]))];
+        document.getElementById('region-sel').innerHTML = regions.map(r => `<option value="${r}">${r}</option>`).join('');
+        changeRegion();
     }
-    
-    function changeRegion() { 
-        const r = document.getElementById('region-sel').value; 
-        const filtered = dataList.filter(d => d["區域"] === r); 
-        document.getElementById('tab-list').innerHTML = filtered.map((d, i) => `<div class="tab-btn ${i===0?'active':''}" onclick="selectTab(this, '${d["分校"]}')">${d["分校"]}</div>`).join(''); 
-        showInfo(filtered[0]); 
+
+    function changeRegion() {
+        const r = document.getElementById('region-sel').value;
+        const filtered = dataList.filter(d => d["區域"] === r);
+        document.getElementById('tab-list').innerHTML = filtered.map((d, i) => 
+            `<div class="tab-btn ${i===0?'active':''}" onclick="selectTab(this, '${d["分校"]}')">${d["分校"]}</div>`
+        ).join('');
+        showInfo(filtered[0]);
     }
-    
-    function selectTab(el, name) { 
-        document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active')); 
-        el.classList.add('active'); 
-        showInfo(dataList.find(d => d["分校"] === name)); 
+
+    function selectTab(el, name) {
+        document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+        el.classList.add('active');
+        showInfo(dataList.find(d => d["分校"] === name));
     }
-    
+
     function showInfo(item) {
-        if(!item) return; clearInterval(timer);
-        const mapUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(BRAND + item["分校"])}`;
-        const imgs = [item["教室照片1"], item["教室照片2"], item["教室照片3"]].filter(p => p && p.includes('http'));
+        if(!item) return;
         document.getElementById('display').innerHTML = `
-            <div class="carousel"><div class="track" id="tk">${imgs.map(i => `<img src="${i}">`).join('')}</div></div>
+            <div class="img-container">
+                <img src="${item["教室照片1"]}">
+            </div>
             <div class="content">
                 <span class="label">📍 ${item["分校"]} 分校地址</span>
-                <div class="box" style="background:#fffbeb; font-weight:bold; color:#b45309;">${item["地址"] || "請參考地圖導航"}</div>
+                <div class="box" style="background:#fffbeb; font-weight:bold; color:#b45309; border-color:#fde68a;">${item["地址"]}</div>
                 
-                <span class="label">💎 為什麼選擇聯成電腦教室？</span>
-                <div class="box">• <strong>地標級位置：</strong> 均鄰近交通樞紐。<br>• <strong>標準化教學配置：</strong> 內建廣播系統。</div>
-                <span class="label">⚠️ 租借注意事項</span>
-                <div class="box notice">
-                    • <strong>環境維護：</strong> 請保持清潔並輕聲細語。<br>
-                    • <strong>設備損壞：</strong> 操不當致損須照價賠償。<br>
-                    • <strong>即時協助：</strong> 遇問題請連繫現場人員。
+                <span class="label">🚌 交通指南</span>
+                <div class="box" style="background:#f0f9ff; border-color:#bae6fd;">${item["交通"]}</div>
+
+                <span class="label">⚠️ 注意事項</span>
+                <div class="box" style="color:#ef4444; background:#fef2f2; border-color:#fecaca;">${item["注意事項"]}</div>
+                
+                <span class="label">🗺️ 地圖位置 (點擊可導航)</span>
+                <div style="margin-top:10px; border-radius:12px; overflow:hidden; border:2px solid #ddd; cursor:pointer;" onclick="window.open('https://www.google.com/maps/search/?api=1&query=${encodeURIComponent("聯成電腦"+item["分校"])}', '_blank')">
+                    <img src="${item["地圖"]}" style="width:100%; display:block;">
                 </div>
-                <span class="label">🗺️ 地圖導航 (點擊開啟)</span>
-                <div style="margin-top:10px; border-radius:12px; overflow:hidden; border:2px solid #ddd; cursor:pointer;" onclick="window.open('${mapUrl}', '_blank')"><img src="${item["地圖"]}" style="width:100%; display:block;"></div>
             </div>`;
-        if (imgs.length > 1) { let idx = 0; timer = setInterval(() => { idx = (idx + 1) % imgs.length; const track = document.getElementById('tk'); if(track) track.style.transform = `translateX(-${idx * 100}%)`; }, 3000); }
     }
-    loadData();
+
+    init();
 </script>
 </body>
 </html>
