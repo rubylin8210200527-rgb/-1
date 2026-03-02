@@ -9,6 +9,8 @@
         :root { --primary: #1e3a8a; --accent: #f59e0b; --bg: #f1f5f9; }
         body { font-family: "Microsoft JhengHei", sans-serif; background: #cbd5e1; margin: 0; padding-bottom: 110px; color: #334155; }
         .container { width: 100%; max-width: 500px; background: white; min-height: 100vh; margin: auto; position: relative; box-shadow: 0 0 20px rgba(0,0,0,0.2); }
+        
+        /* Header */
         .header { background: linear-gradient(135deg, #1e3a8a 0%, #2563eb 100%); color: white; padding: 25px 20px; text-align: center; }
         .header h1 { margin: 0; font-size: 22px; letter-spacing: 1px; }
         .ttqs-badge { background: var(--accent); color: #000; display: inline-block; padding: 4px 15px; border-radius: 50px; font-size: 13px; font-weight: bold; margin-top: 10px; border: 2px solid white; }
@@ -30,21 +32,28 @@
         .modal-content img { width: 100%; height: auto; margin: 15px 0; border-radius: 8px; }
         .close-btn { position: absolute; top: -10px; right: -10px; background: #ff4d4d; color: white; width: 35px; height: 35px; border-radius: 50%; border: none; font-weight: bold; cursor: pointer; }
 
-        /* 篩選與內容 */
-        .filter-box { padding: 15px; background: #f8fafc; border-bottom: 1px solid #e2e8f0; }
-        select { width: 100%; padding: 12px; border-radius: 10px; border: 2px solid #cbd5e1; font-size: 16px; font-weight: bold; color: var(--primary); outline: none; }
-        .tabs { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; padding: 15px; background: #fff; }
+        /* 找回來的兩大分類按鈕 */
+        .category-tabs { display: flex; padding: 15px; gap: 10px; background: #fff; border-bottom: 1px solid #eee; }
+        .cat-btn { flex: 1; padding: 12px; border-radius: 12px; border: 2px solid #e2e8f0; background: #f8fafc; font-weight: bold; cursor: pointer; text-align: center; transition: 0.3s; color: #64748b; }
+        .cat-btn.active { background: #fffbeb; border-color: var(--accent); color: #b45309; box-shadow: 0 4px 10px rgba(245,158,11,0.2); }
+
+        /* 篩選與分校選單 */
+        .filter-box { padding: 15px; background: #f8fafc; }
+        select { width: 100%; padding: 12px; border-radius: 10px; border: 2px solid #cbd5e1; font-size: 16px; font-weight: bold; color: var(--primary); }
+        .tabs { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; padding: 15px; }
         .tab-btn { padding: 10px; background: #f1f5f9; border-radius: 8px; border: 1px solid #e2e8f0; font-weight: bold; cursor: pointer; text-align: center; font-size: 14px; color: #64748b; }
-        .tab-btn.active { background: var(--primary); color: white; border-color: var(--primary); box-shadow: 0 4px 10px rgba(30,58,138,0.3); }
+        .tab-btn.active { background: var(--primary); color: white; border-color: var(--primary); }
+        
+        /* 內容區 */
         .content { padding: 0 20px 20px; }
         .label { font-weight: bold; color: var(--primary); border-left: 5px solid var(--primary); padding-left: 10px; margin: 25px 0 10px; display: block; font-size: 16px; }
         .box { background: #f8fafc; padding: 15px; border-radius: 12px; font-size: 14px; line-height: 1.7; border: 1px solid #e2e8f0; white-space: pre-line; color: #475569; }
         .img-container { width: 100%; height: 260px; border-radius: 15px; overflow: hidden; background: #000; margin-bottom: 10px; }
         .img-container img { width: 100%; height: 100%; object-fit: cover; }
 
-        /* 底部導航 */
+        /* 底部導航修復 */
         .quick-action-bar { position: fixed; bottom: 0; left: 50%; transform: translateX(-50%); width: 100%; max-width: 500px; background: white; display: flex; justify-content: space-around; align-items: flex-end; padding: 10px 0 25px 0; box-shadow: 0 -5px 15px rgba(0,0,0,0.1); z-index: 1000; }
-        .action-item { text-decoration: none; display: flex; flex-direction: column; align-items: center; gap: 5px; flex: 1; color: #475569; cursor: pointer; }
+        .action-item { text-decoration: none !important; display: flex; flex-direction: column; align-items: center; gap: 5px; flex: 1; color: #475569; cursor: pointer; }
         .action-icon { width: 45px; height: 45px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 20px; color: white; }
         .bg-blue { background: #2563eb; } .bg-green { background: #22c55e; } .bg-red { background: #ef4444; }
         .main-icon { width: 60px !important; height: 60px !important; font-size: 30px !important; margin-top: -20px; border: 5px solid white; box-shadow: 0 4px 15px rgba(0,0,0,0.2); }
@@ -55,23 +64,22 @@
 <div id="qr-modal" onclick="closeQR()">
     <div class="modal-content" onclick="event.stopPropagation()">
         <button class="close-btn" onclick="closeQR()">✕</button>
-        <h3 style="margin:0; color:#1e3a8a;">專案部真人諮詢</h3>
-        <img src="./%E5%B0%88%E6%A1%88%E9%83%A8%EF%BC%8D%E4%BC%81%E6%A5%AD%E5%9C%98%E9%9A%8A%20-%20LINEQR%20(1).png">
+        <h3 style="margin:0; color:#1e3a8a;">專案部 真人諮詢</h3>
+        <img src="./lineqr.png" alt="LINE QR">
         <a href="https://line.me/R/oaMessage/@071yewow/?%E8%AB%8B%E7%99%BC%E9%80%81%E8%A8%8A%E6%81%AF%E5%AE%8C%E6%88%90%E6%8C%87%E6%B4%BE:%20assignToAgent._V0P1dV" 
            target="_blank" style="display:block; background:#22c55e; color:white; text-decoration:none; padding:12px; border-radius:10px; font-weight:bold;">點此啟動真人客服</a>
     </div>
-</div>
-
-<div class="floating-promo" onclick="openQR()">
-    <div style="font-size:10px; text-decoration:line-through; opacity:0.8;">$2,250</div>
-    <div style="font-size:13px; font-weight:bold;">優惠價<br>洽詢</div>
-    <div style="font-size:9px; background:white; color:red; padding:2px 6px; border-radius:4px; margin-top:3px; font-weight:900;">HOT</div>
 </div>
 
 <div class="container">
     <div class="header">
         <h1>聯成電腦 | 專業培訓空間</h1>
         <div class="ttqs-badge">🏆 國家級培訓場地認證</div>
+    </div>
+
+    <div class="category-tabs">
+        <div class="cat-btn active" onclick="alert('目前顯示：企業包班資訊')">企業包班</div>
+        <div class="cat-btn" onclick="alert('目前顯示：講師外派資訊')">講師外派</div>
     </div>
     
     <div class="filter-box">
@@ -97,7 +105,7 @@
 </div>
 
 <script>
-    // 這裡放入你之前貼給我的那段超長 dataList 分校資料 (16間分校)
+    // 資料結構保持 16 間分校
     const dataList = [
         {"區域":"北區","分校":"忠孝","地址":"臺北市忠孝東路四段178號4樓","教室照片1":"https://i.postimg.cc/PqmKsHdX/zhong-xiao-0105(1).jpg","注意事項":"‧請維護環境清潔。\n‧電腦教室一人一機環境。","地圖":"https://i.postimg.cc/SNJrQCyj/de-tu.jpg","交通":"捷運『忠孝敦化站』3號出口，上4樓"},
         {"區域":"北區","分校":"館前","地址":"臺北市館前路2號5樓","教室照片1":"https://i.postimg.cc/kgKMDzpk/0201.jpg","注意事項":"‧請維護清潔並輕聲細語。","地圖":"https://i.postimg.cc/wjpM59LM/de-tu.jpg","交通":"捷運『台北車站』Z6出口，國泰世華旁電梯"},
